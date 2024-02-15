@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Project-Yandex-Sprint-4" />
+        <module name="Project_Yandex_2" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Project-Yandex-Sprint-4" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
