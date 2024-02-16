@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 public class MainPage  extends BasePage{
     public static final String URL = "https://qa-scooter.praktikum-services.ru/"; // Адрес сервиса
     private final By firstHeaderOrderButton = By.className("Button_Button__ra12g"); //кнопка заказать в хедере страницы
-    private final By secondHomeOrderButton = By.xpath(".//div[@class='Home_FinishButton__1_cWm']"); //кнопка заказать в середине страницы
+    private final By secondHomeOrderButton = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']"); //кнопка заказать в середине страницы
     private final By accordionMenu = By.className("accordion");
 
     public MainPage(WebDriver driver) {
