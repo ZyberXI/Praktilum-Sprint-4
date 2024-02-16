@@ -28,21 +28,39 @@ public class MainPage  extends BasePage{
         return this;
     }
 
-    public boolean isNquestionDisplayed (int questionNumber) {
+    public boolean isNquestionDisplayed (int questionIndex) {
 
         WebElement element = driver.findElement(accordionMenu);
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
 
         final String accordionNquestionTemplate = ".//div[@id='accordion__heading-%d']";
-        final String accordionNquestionFullTemplate = String.format(accordionNquestionTemplate, questionNumber);
+        final String accordionNquestionFullTemplate = String.format(accordionNquestionTemplate, questionIndex);
 
         driver.findElement(accordionMenu);
         driver.findElement(By.xpath(accordionNquestionFullTemplate));
         driver.findElement(By.xpath(accordionNquestionFullTemplate)).click();
 
         final String answerNquestionTemplate = ".//div[@id='accordion__panel-%d']";
-        final String answerNquestionFullTemplate = String.format(answerNquestionTemplate, questionNumber);
+        final String answerNquestionFullTemplate = String.format(answerNquestionTemplate, questionIndex);
         return driver.findElement(By.xpath(answerNquestionFullTemplate)).isDisplayed();
     }
+
+    public String getTextFromQuestion (int questionIndex) {
+
+        final String accordionNquestionTemplate = ".//div[@id='accordion__heading-%d']";
+        final String accordionNquestionFullTemplate = String.format(accordionNquestionTemplate, questionIndex);
+
+        return driver.findElement(By.xpath(accordionNquestionFullTemplate)).getText();
+
+    }
+
+    public String getTextFromAnswer (int questionIndex) {
+
+        final String answerNquestionTemplate = ".//div[@id='accordion__panel-%d']";
+        final String answerNquestionFullTemplate = String.format(answerNquestionTemplate, questionIndex);
+        return driver.findElement(By.xpath(answerNquestionFullTemplate)).getText();
+
+    }
+
 
 }

@@ -7,13 +7,12 @@ import org.junit.runners.Parameterized;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 public class QuestionsTest extends BaseTest {
 
-    private final int questionNumber = 5;
+    private final int questionIndex = 1;
 
 
 
@@ -42,9 +41,21 @@ public class QuestionsTest extends BaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         boolean isNquestionDisplayed = new MainPage(driver)
-                .isNquestionDisplayed(questionNumber);
+                .isNquestionDisplayed(questionIndex);
+
+        String questionText = new MainPage(driver)
+                .getTextFromQuestion(questionIndex);
+
+        String answerText = new MainPage(driver)
+                .getTextFromAnswer(questionIndex);
 
         assertTrue(isNquestionDisplayed);
+
+        assertEquals("Хочу сразу несколько самокатов! Так можно?",questionText);
+
+        assertEquals("Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим.", answerText);
+
+
 
     }
 
