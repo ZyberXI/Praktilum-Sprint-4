@@ -7,10 +7,13 @@ import org.junit.runners.Parameterized;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 
 public class QuestionsTest extends BaseTest {
 
-    private final int questionNumber = 13;
+    private final int questionNumber = 5;
 
 
 
@@ -38,8 +41,10 @@ public class QuestionsTest extends BaseTest {
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        MainPage mainPage = new MainPage(driver)
-                .clickNquestion(questionNumber);
+        boolean isNquestionDisplayed = new MainPage(driver)
+                .isNquestionDisplayed(questionNumber);
+
+        assertTrue(isNquestionDisplayed);
 
     }
 

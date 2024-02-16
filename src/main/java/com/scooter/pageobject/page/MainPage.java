@@ -28,37 +28,21 @@ public class MainPage  extends BasePage{
         return this;
     }
 
-    public MainPage clickNquestion (int questionNumber) {
+    public boolean isNquestionDisplayed (int questionNumber) {
 
         WebElement element = driver.findElement(accordionMenu);
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
 
-        final String accordionNquestionTemplate = ".//div[@id='accordion__heading-%d'][@aria-controls='accordion__panel-13']";
+        final String accordionNquestionTemplate = ".//div[@id='accordion__heading-%d']";
         final String accordionNquestionFullTemplate = String.format(accordionNquestionTemplate, questionNumber);
 
         driver.findElement(accordionMenu);
-        driver.findElement(By.id(accordionNquestionFullTemplate));
-        driver.findElement(By.id(accordionNquestionFullTemplate)).click();
+        driver.findElement(By.xpath(accordionNquestionFullTemplate));
+        driver.findElement(By.xpath(accordionNquestionFullTemplate)).click();
 
-        return this;
+        final String answerNquestionTemplate = ".//div[@id='accordion__panel-%d']";
+        final String answerNquestionFullTemplate = String.format(answerNquestionTemplate, questionNumber);
+        return driver.findElement(By.xpath(answerNquestionFullTemplate)).isDisplayed();
     }
+
 }
-//
-//    public void testclick() {
-//        WebElement element = driver.findElement(By.className("accordion"));
-//        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
-//        driver.findElement(By.xpath(".//div[@class='accordion__button']"));
-//    }
-//
-//    public clickQuestionByIndex(int questionNumber) {
-//        driver.findElement(By.className("accordion")).get(questionNumber).click();
-//    }
-//
-//    public getTextQuestionByIndex(int questionNumber) {
-//        return
-//    }
-//
-//    public void clickFirstQuestion() {
-//        driver.findElement(FirstQuestionButton).click();
-//    } //метод клик по первому вопросу
-//}
