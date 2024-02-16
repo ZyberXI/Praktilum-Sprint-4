@@ -9,31 +9,29 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
 
-
+@RunWith(Parameterized.class)
 public class QuestionsTest extends BaseTest {
+    private final int questionIndex;
+    private final String questionText;
+    private final String questionAnswer;
 
-    private final int questionIndex = 1;
+    public QuestionsTest(int questionIndex, String questionText, String questionAnswer) {
+        this.questionIndex = questionIndex;
+        this.questionText = questionText;
+        this.questionAnswer = questionAnswer;
+    }
 
-
-
-//    public PositiveQuestionsTest(int questionNumber, String questionText, String questionAnswer) {
-//        this.questionNumber = questionNumber;
-//        this.questionText = questionText;
-//        this.questionAnswer = questionAnswer;
-//    }
-
-//    @Parameterized.Parameters
-//    public static Object[][] data() {
-//        return new Object[][]{
-//                {1, "Сколько это стоит? И как оплатить?",
-//                        "Сутки — 400 рублей. Оплата курьеру — наличными или картой."},
-//                {5, "Можно ли продлить заказ или вернуть самокат раньше?",
-//                        "Пока что нет! Но если что-то срочное — всегда можно позвонить в поддержку по красивому номеру 1010."},
-//        };
-//    }
-
-
-
+    @Parameterized.Parameters
+    public static Object[][] data() {
+        return new Object[][]{
+                {0, "Сколько это стоит? И как оплатить?",
+                        "Сутки — 400 рублей. Оплата курьеру — наличными или картой."},
+                {4, "Можно ли продлить заказ или вернуть самокат раньше?",
+                        "Пока что нет! Но если что-то срочное — всегда можно позвонить в поддержку по красивому номеру 1010."},
+                {6, "Можно ли отменить заказ?",
+                "Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои."},
+        };
+    }
 
     @Test
     public void checkPositiveQuestionsTest() {
@@ -43,19 +41,25 @@ public class QuestionsTest extends BaseTest {
         boolean isNquestionDisplayed = new MainPage(driver)
                 .isNquestionDisplayed(questionIndex);
 
+        assertTrue(isNquestionDisplayed);
+
+
+        String actualQuestionText = new MainPage(driver)
+                .getTextFromQuestion(questionIndex);
+
         String questionText = new MainPage(driver)
                 .getTextFromQuestion(questionIndex);
 
-        String answerText = new MainPage(driver)
+        assertEquals(actualQuestionText,questionText);
+
+
+        String actualQuestionAnswer = new MainPage(driver)
                 .getTextFromAnswer(questionIndex);
 
-        assertTrue(isNquestionDisplayed);
+        String questionAnswer = new MainPage(driver)
+                .getTextFromAnswer(questionIndex);
 
-        assertEquals("Хочу сразу несколько самокатов! Так можно?",questionText);
-
-        assertEquals("Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим.", answerText);
-
-
+        assertEquals(actualQuestionAnswer, questionAnswer);
 
     }
 

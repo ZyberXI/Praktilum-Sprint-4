@@ -46,20 +46,15 @@ public class MainPage  extends BasePage{
     }
 
     public String getTextFromQuestion (int questionIndex) {
-
         final String accordionNquestionTemplate = ".//div[@id='accordion__heading-%d']";
         final String accordionNquestionFullTemplate = String.format(accordionNquestionTemplate, questionIndex);
-
         return driver.findElement(By.xpath(accordionNquestionFullTemplate)).getText();
-
     }
 
     public String getTextFromAnswer (int questionIndex) {
-
         final String answerNquestionTemplate = ".//div[@id='accordion__panel-%d']";
         final String answerNquestionFullTemplate = String.format(answerNquestionTemplate, questionIndex);
         return driver.findElement(By.xpath(answerNquestionFullTemplate)).getText();
-
     }
 
 
