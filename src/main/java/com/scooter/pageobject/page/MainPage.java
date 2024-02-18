@@ -28,7 +28,7 @@ public class MainPage  extends BasePage{
         return this;
     }
 
-    public boolean isNquestionDisplayed (int questionIndex) {
+    public MainPage scrollToQuestions (int questionIndex) {
 
         WebElement element = driver.findElement(accordionMenu);
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
@@ -42,7 +42,8 @@ public class MainPage  extends BasePage{
 
         final String answerNquestionTemplate = ".//div[@id='accordion__panel-%d']";
         final String answerNquestionFullTemplate = String.format(answerNquestionTemplate, questionIndex);
-        return driver.findElement(By.xpath(answerNquestionFullTemplate)).isDisplayed();
+        driver.findElement(By.xpath(answerNquestionFullTemplate));
+        return this;
     }
 
     public String getTextFromQuestion (int questionIndex) {
