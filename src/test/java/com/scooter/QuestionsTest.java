@@ -57,16 +57,8 @@ public class QuestionsTest extends BaseTest {
                 .scrollToQuestions(questionIndex)
                 .getTextFromAnswer(questionIndex);
 
-        String questionText = new MainPage(driver)
-                .scrollToQuestions(questionIndex)
-                .getTextFromQuestion(questionIndex);
-
-        String questionAnswer = new MainPage(driver)
-                .scrollToQuestions(questionIndex)
-                .getTextFromAnswer(questionIndex);
-
-        assertEquals(actualQuestionText,questionText);
-        assertEquals(actualQuestionAnswer, questionAnswer);
+        assertEquals(questionText, actualQuestionText);
+        assertEquals(questionAnswer, actualQuestionAnswer);
 
     }
 
